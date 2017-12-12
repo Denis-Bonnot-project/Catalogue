@@ -35,16 +35,16 @@
 		},
 		"prix": {
 			"name": "prix",
-			"type": "string",
-			"typeLabel": "string",
+			"type": "number",
+			"typeLabel": "number",
 			"required": false,
 			"id": "prix",
 			"order": 4
 		},
 		"poids": {
 			"name": "poids",
-			"type": "string",
-			"typeLabel": "string",
+			"type": "number",
+			"typeLabel": "number",
 			"required": false,
 			"id": "poids",
 			"order": 5
