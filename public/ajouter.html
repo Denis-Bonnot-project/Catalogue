@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ajouter</title>
+  <script type="text/javascript">
+    window.onload=function(){
+    // Soumettre un formulaire en Ajax
+    document.forms.le_formulaire.onsubmit=function(){
+      var le_formulaire=document.forms.le_formulaire;
+      var data={};
+      for (var i = 0; i < le_formulaire.length; i++) {
+        if (le_formulaire[i].name) {
+          console.log(document.forms.le_formulaire[i]);
+          data[le_formulaire[i].name]=le_formulaire[i].value;
+        }
+      }
+      var str_data=JSON.stringify(data);
+      var xhr2=new XMLHttpRequest();
+      xhr2.open('POST',"/produits",true);
+      xhr2.setRequestHeader('Content-Type','application/json; charset=UTF-8');
+      xhr2.onreadystatechange=function(){
+        if (xhr2.readyState==4 && xhr2.status==200) {
+          console.log("OK "+str_data);
+        }
+        else {
+          console.error("KO");
+        }
+      }
+      xhr2.send(str_data);
+      return false;
+    }
+    }
+  </script>
+</head>
+<body>
+
+  <form name="le_formulaire">
+    Image: <input type="text" name="image" placeholder="chemin de l'image" value=""><br><br>
+    Nom: <input type="text" name="name" placeholder="Nom" value=""><br><br>
+    Description: <input type="text" name="description" placeholder="Description" value=""><br><br>
+    Prix: <input type="text" name="prix" placeholder="Prix" value=""><br><br>
+    Poids: <input type="text" name="poids" placeholder="Poids" value=""><br><br>
+    En savoir plus (fiche): <input type="text" name="fiche" placeholder="chemin de la fiche" value=""><br><br>
+    <input type="submit" value="Ajouter">
+  </form>
+
+</body>
+</html>

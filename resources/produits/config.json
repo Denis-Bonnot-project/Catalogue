@@ -1,0 +1,61 @@
+{
+	"type": "Collection",
+	"properties": {
+		"image": {
+			"name": "image",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "image",
+			"order": 0
+		},
+		"nom": {
+			"name": "nom",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "nom",
+			"order": 1
+		},
+		"description": {
+			"name": "description",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "description",
+			"order": 2
+		},
+		"tags": {
+			"name": "tags",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "tags",
+			"order": 3
+		},
+		"prix": {
+			"name": "prix",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "prix",
+			"order": 4
+		},
+		"poids": {
+			"name": "poids",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "poids",
+			"order": 5
+		},
+		"fiche": {
+			"name": "fiche",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "fiche",
+			"order": 6
+		}
+	}
+}

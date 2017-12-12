@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Modifier</title>
+  <script type="text/javascript">
+    window.onload=function(){
+      var produit_id=window.location.search.substr(4);
+      var xhr=new XMLHttpRequest();
+      xhr.open('GET','/produits/'+produit_id,true)
+      xhr.onreadystatechange=function(){
+        if (xhr.readyState==4 && xhr.status==200) {
+          var str=xhr.responseText;
+          var produit=eval('('+ str +')');
+          console.log(produit);
+          document.forms.le_formulaire.id.value=produit.id;
+          document.forms.le_formulaire.image.value=produit.image;
+          document.forms.le_formulaire.nom.value=produit.nom;
+          document.forms.le_formulaire.description.value=produit.description;
+          document.forms.le_formulaire.prix.value=produit.prix;
+          document.forms.le_formulaire.poids.value=produit.poids;
+          document.forms.le_formulaire.fiche.value=produit.fiche;
+        }
+      }
+      xhr.send();
+
+      document.forms.le_formulaire.onsubmit=function(){
+        var le_formulaire=document.forms.le_formulaire;
+        var data={};
+        for (var i = 0; i < le_formulaire.length; i++) {
+          if (le_formulaire[i].name) {
+            console.log(document.forms.le_formulaire[i]);
+            data[le_formulaire[i].name]=le_formulaire[i].value;
+          }
+        }
+      var str_data=JSON.stringify(data);
+      //console.log(str_data);
+      var xhr2=new XMLHttpRequest();
+      xhr2.open('PUT',"/produits",true);
+      xhr2.setRequestHeader('Content-Type','application/json; charset=UTF-8');
+      xhr2.onreadystatechange=function(){
+        if (xhr2.readyState==4 && xhr2.status==200) {
+          console.log("OK "+ str_data);
+        }
+        else {
+          console.error("KO");
+        }
+      }
+      xhr2.send(str_data);
+      return false;
+    }
+    }
+  </script>
+</head>
+<body>
+
+  <form name="le_formulaire">
+    <input type="hidden" name="id" value="">
+    Image: <input type="text" name="image" placeholder="chemin de l'image" value=""><br><br>
+    Nom: <input type="text" name="nom" placeholder="Nom" value=""><br><br>
+    Description: <input type="text" name="description" placeholder="Description" value=""><br><br>
+    Prix: <input type="text" name="prix" placeholder="Prix" value=""><br><br>
+    Poids: <input type="text" name="poids" placeholder="Poids" value=""><br><br>
+    En savoir plus (fiche): <input type="text" name="fiche" placeholder="chemin de la fiche" value=""><br><br>
+    <input type="submit" value="Modifier">
+  </form>
+
+</body>
+</html>
